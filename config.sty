@@ -1,0 +1,695 @@
+\ProvidesPackage{config}
+
+%штука для решения проблемы с \R 
+%ссылка https://tex.stackexchange.com/questions/3676/too-many-math-alphabets-error
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+
+\RequirePackage[T2A]{fontenc}
+\RequirePackage[russian]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{titlesec}
+
+\RequirePackage{hyperref}
+
+
+\RequirePackage[intlimits,sumlimits]{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{extarrows}
+\RequirePackage{mathtools}
+\RequirePackage{commath}
+\RequirePackage{ulem}
+\RequirePackage{placeins}
+\RequirePackage{float}
+\RequirePackage{amsfonts}
+
+
+\RequirePackage{bbm}
+
+
+\RequirePackage{relsize}
+
+\RequirePackage{multicol}
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{black}}
+\setlength{\columnsep}{0.5cm}
+\RequirePackage{nicematrix}
+
+
+\RequirePackage{blindtext}
+\RequirePackage{wrapfig,amsthm}
+% \RequirePackage[top=1cm,bottom=2cm,bindingoffset=0cm,left = 2cm,right=2cm]{geometry}
+% \RequirePackage{graphicx}
+\RequirePackage{pgfplots}
+\RequirePackage{pgfplotstable}
+
+\RequirePackage{enumitem}
+\RequirePackage{indentfirst}
+% \setlist{nosep}
+% \setlength{\parindent}{0pt}
+% \setlength{\parskip}{3pt}
+
+%\RequirePackage{xypic}
+
+\RequirePackage{tikz}
+\RequirePackage{tikz-cd}
+\RequirePackage[most]{tcolorbox}
+%\RequirePackage{physics} %конфликтует со скобками
+\usetikzlibrary{arrows}
+
+%mathcha
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+
+
+
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkgray,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+%mathcha
+\RequirePackage{mathdots}
+\RequirePackage{yhmath}
+\let\savedegree\degree
+\let\savering\ring
+\let\ring\relax
+\let\degree\relax
+\RequirePackage{mathabx}
+\let\degree\savedegree
+\let\ring\savering
+\RequirePackage{cancel}
+\RequirePackage{color}
+\RequirePackage{siunitx}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{amssymb}
+\RequirePackage{gensymb}
+\RequirePackage{tabularx}
+\RequirePackage{extarrows}
+\RequirePackage{booktabs}
+\RequirePackage{bm}
+\RequirePackage{bbold}
+\RequirePackage{esvect}
+\RequirePackage{xfrac}
+\RequirePackage{subcaption}
+\RequirePackage{lipsum}
+
+\RequirePackage{wasysym}
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{dot}{. }
+
+% #1 is the caption label
+% #2 is the separator
+% #3 is the text
+\DeclareCaptionFormat{mycaptionformat}{%
+	#1#2~#3%
+}
+
+% #1 is the name (pic, fig, ...)
+% #2 is the number
+\DeclareCaptionLabelFormat{mycaptionlabelformat}{%
+	#1\,#2%
+}
+
+\captionsetup{%
+  %margin=1cm,%
+  margin=2\parindent,%
+  font=small,%
+  labelsep=dot,%
+	format=mycaptionformat,%
+	labelformat=mycaptionlabelformat,%
+	justification=centerlast%
+}
+
+
+
+\newtcolorbox[auto counter, number within=section]{theo}[2][]{colback=blue!5!white,colframe=blue!50!black,fonttitle=\bfseries,title=Theorem \thetcbcounter. #2,#1}
+
+\newtcolorbox[auto counter, number within=section]{nota}[2][]{colback=black!5!white,colframe=black!50!black,fonttitle=\bfseries,title=Notation \thetcbcounter. #2,#1}
+\newtcolorbox[auto counter, number within=section]{Reminder}[2][]{colback=black!5!white,colframe=black!50!black,fonttitle=\bfseries,title=Reminder \thetcbcounter. #2,#1}
+\newtcolorbox[auto counter, number within=section]{defin}[2][]{colback=green!5!white,colframe=green!40!black,fonttitle=\bfseries,title=Definition \thetcbcounter. #2,#1}
+\newtcolorbox[auto counter, number within=section]{lem}[2][]{colback=lime!5!white,colframe=lime!50!black,fonttitle=\bfseries,title=Lemma \thetcbcounter. #2,#1}
+\newtcolorbox[auto counter,number within=section]{propos}[2][]{colback=purple!5!white,colframe=purple!60!black,fonttitle=\bfseries, title=Proposition \thetcbcounter. #2,#1}
+\newtcolorbox[auto counter,number within=section]{Remark}[2][]{colback=violet!5!white,colframe=violet!60!black,fonttitle=\bfseries, title=Remark \thetcbcounter. #2,#1}
+\newtcolorbox[auto counter,number within=section]{Exercise}[2][]{colback=cyan!5!white,colframe=cyan!60!black,fonttitle=\bfseries, title=Exercise \thetcbcounter. #2,#1}
+\newtcolorbox[auto counter,number within=section]{Example}[2][]{colback=magenta!5!white,colframe=magenta!59.9!black,fonttitle=\bfseries, title=Example \thetcbcounter. #2,#1}
+
+\newtheorem* {corollary}{Corollary}
+\newtheorem* {example}{Example}
+\newtheorem* {remark}{Remark}
+\newtheorem* {reminder}{Reminder}
+\newtheorem* {exercise}{Exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Собственные команды %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\braket}{\lang}{\rang}
+
+
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\la}{\Leftarrow}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\cupn}{\bigcup\limits_{i=1}^n}
+\newcommand{\capn}{\bigcap\limits_{i=1}^n}
+\newcommand{\cupinfty}{\bigcup\limits_{i=1}^\infty}
+\newcommand{\capinfty}{\bigcap\limits_{i=1}^\infty}
+
+\newcommand{\sumn}{\sum\limits_{i=1}^n}
+\newcommand{\prodn}{\prod\limits_{i=1}^n}
+\newcommand{\suminfty}{\sum\limits_{i=1}^{\infty}}
+\newcommand{\prodinfty}{\prod\limits_{i=1}^{\infty}}
+
+\newcommand{\rn}{\mathbb{R}^n}
+\newcommand{\rk}{\mathbb{R}^k}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\renewcommand{\C}{\mathbb C}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\deq}{\overset{d}{=}}
+\newcommand{\M}{\textsc{\textbf{M}}}
+\newcommand{\E}{\mathbb E}
+\newcommand{\D}{\mathbb D}
+\newcommand{\dto}{\xrightarrow[]{d}}
+\newcommand{\pto}{\xrightarrow[]{\P}}
+
+
+\let\diff\dif
+\let\Diff\Dif
+\newcommand{\horline}{\noindent\rule{0.85\paperwidth}{1pt}}
+
+\newcommand{\lang}{\langle}
+\newcommand{\rang}{\rangle}
+
+\newcommand{\liminfty}{\underset{n\to\infty}{\lim}}
+\newcommand{\toinfty}{\xrightarrow[n\to\infty]{}}
+
+
+\let\longeq\xlongequal
+\newcommand{\defeq}{\overset{\operatorname{def}}{=}}
+
+\newcommand{\fii}{\varphi}
+
+\newcommand{\todo}{{\color{red}\textbf{ TODO }}}
+
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Out}{Out}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\supp}{supp}
+
+%%% Bigger sums and ints
+\newcommand{\bigsum}{\mathop{\mathlarger{\sum}}}
+\newcommand{\bbigsum}{\mathop{\mathlarger{\mathlarger{\sum}}}}
+\newcommand{\bbbigsum}{\mathop{\mathlarger{\mathlarger{\mathlarger{\sum}}}}}
+\newcommand{\Bigsum}{\mathop{\mathlarger{\mathlarger{\mathlarger{\mathlarger{\sum}}}}}}
+
+\newcommand{\bigint}{\mathop{\mathlarger{\int}}}
+\newcommand{\bbigint}{\mathop{\mathlarger{\mathlarger{\int}}}}
+\newcommand{\bbbigint}{\mathop{\mathlarger{\mathlarger{\mathlarger{\int}}}}}
+\newcommand{\Bigint}{\mathop{\mathlarger{\mathlarger{\mathlarger{\mathlarger{\int}}}}}}
+
+\newcommand{\bigiint}{\mathop{\mathlarger{\iint}}}
+\newcommand{\bbigiint}{\mathop{\mathlarger{\mathlarger{\iint}}}}
+\newcommand{\bbbigiint}{\mathop{\mathlarger{\mathlarger{\mathlarger{\iint}}}}}
+\newcommand{\Bigiint}{\mathop{\mathlarger{\mathlarger{\mathlarger{\mathlarger{\iint}}}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% всякие штуки для оформления %%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{listings}
+% \RequirePackage{color}
+\definecolor{lightgray}{gray}{0.9}
+
+\lstset{
+    showstringspaces=false,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color[grey]{0.6},
+    stringstyle=\color[RGB]{255,150,75}
+}
+
+\newcommand{\inlinecode}[2]{\colorbox{lightgray}{\lstinline[language=#1]$#2$}}
+
+
+\newcommand{\circled}[2][none]{%
+ \tikz[baseline=(a.base)]\node[draw,circle,inner sep=0.5pt, outer sep=0pt,fill=#1](a){\ensuremath #2\strut};
+ }
+ \tcbset{highlight math style={enhanced,
+  colframe=red,colback=white,arc=0pt,boxrule=1pt}}
+\newcommand{\mboxed}[1]{\tcbhighmath[fuzzy halo=1mm with blue!50!white,arc=2pt,
+  boxrule=0pt,frame hidden]{#1}}
+\definecolor{mag}{RGB}{128, 0, 255}
+\newcommand{\sms}[1]{\textcolor{mag}{#1}}
+\newtheorem* {comments}{Comment}
+\newcommand{\todos}[1]{{\color{red}\textbf{ TODO: #1}}}
+\let\latexchi\chi
+\makeatletter
+\renewcommand\chi{\@ifnextchar_\sub@chi\latexchi}
+\newcommand{\sub@chi}[2]{% #1 is _, #2 is the subscript
+  \@ifnextchar^{\subsup@chi{#2}}{\latexchi^{}_{#2}}%
+}
+\newcommand{\subsup@chi}[3]{% #1 is the subscript, #2 is ^, #3 is the superscript
+  \latexchi_{#1}^{#3}%
+}
+\makeatother
+
+\RequirePackage{ifthen}
+\newcommand*{\bound}[2][]{%
+  \ifthenelse{\equal{#1}{}}{%
+    \left.
+    #2
+    %\vphantom{\big|}
+    \mathstrut
+    \right|
+  }{%
+    \csname #1l\endcsname.
+    #2
+    \csname #1r\endcsname|
+  }
+}
+
+\renewcommand*{\implies}{\;\mathrel{\Rightarrow}\;}
+
+\newcommand*{\picref}[1]{рис.\,\ref{#1}}
+
+\let\savediv=\div
+\let\saverot=\rot
+\let\savegrad=\grad
+
+\let\div=\undefined
+\let\rot=\undefined
+\let\grad=\undefined
+
+\newcommand*{\div}{\mathop{\mathrm{div}}}
+\newcommand*{\rot}{\mathop{\mathrm{rot}}}
+\newcommand*{\grad}{\mathop{\mathrm{grad}}}
+\newcommand*{\diag}{\mathop{\mathrm{diag}}}
+
+
+% 1: степень, если есть
+% 2: d или \partial
+% 3: функция дифференцирования
+% 4: переменная дифференцирования
+
+%\newcommand*{\@dv@print@line}[2]{#1 / #2}
+%\newcommand*{\@dv@print@frac}[2]{\cfrac{#1}{#2}}
+%
+%\newcommand*{\@dv}[4]{%
+% \ifthenelse{\equal{#1}{}}{%
+%   \@ifstar%
+%   \@dv@print@line{#2 #3}{#2 #4}%
+%   \@else
+%   \@dv@print@frac{#2 #3}{#2 #4}%
+% }{%
+%   \@ifstar%
+%   \@dv@print@line{{#2}^{#1} #3}{{#2}^{#1} #4}%
+%   \@else
+%   \@dv@print@frac{{#2}^{#1} #3}{{#2}^{#1} #4}%
+% }
+%}
+
+\makeatletter
+
+\newif\if@displayfrac@
+
+\newcommand*{\@dv@line}[4]{%
+  \ifthenelse{\equal{#1}{}}{%
+    #2 #3 / #2 #4%
+  }{%
+    {#2}^{#1} #3 / #2 {#4}^{#1}%
+  }%
+}
+
+\newcommand*{\@dv@frac}[4]{%
+  \ifthenelse{\equal{#1}{}}{%
+    \if@displayfrac@
+        \dfrac{#2 #3}{#2 #4}%
+    \else
+        \frac{#2 #3}{#2 #4}%
+    \fi
+  }{%
+    \if@displayfrac@
+        \dfrac{{#2}^{#1} #3}{#2 {#4}^{#1}}%
+    \else
+        \frac{{#2}^{#1} #3}{#2 {#4}^{#1}}%
+    \fi
+  }%
+}
+
+\newcommand*{\pdv@line}[3][]{\@displayfrac@false\@dv@line{#1}{\partial}{#2}{#3}}
+\newcommand*{\pdv@frac}[3][]{\@displayfrac@false\@dv@frac{#1}{\partial}{#2}{#3}}
+\newcommand*{\ddv@line}[3][]{\@displayfrac@false\@dv@line{#1}{\diff\,}{#2}{#3}}
+\newcommand*{\ddv@frac}[3][]{\@displayfrac@false\@dv@frac{#1}{\diff\,}{#2}{#3}}
+
+\newcommand*{\dpdv@line}[3][]{\@displayfrac@true\@dv@line{#1}{\partial}{#2}{#3}}
+\newcommand*{\dpdv@frac}[3][]{\@displayfrac@true\@dv@frac{#1}{\partial}{#2}{#3}}
+\newcommand*{\dddv@line}[3][]{\@displayfrac@true\@dv@line{#1}{d}{#2}{#3}}
+\newcommand*{\dddv@frac}[3][]{\@displayfrac@true\@dv@frac{#1}{d}{#2}{#3}}
+
+\let\pdv=\undefined
+\newcommand*{\pdv}{
+  \@ifstar\pdv@line\pdv@frac
+}
+
+\newcommand*{\ddv}{
+  \@ifstar\ddv@line\ddv@frac
+}
+
+\newcommand*{\dpdv}{
+  \@ifstar\dpdv@line\dpdv@frac
+}
+
+\newcommand*{\dddv}{
+  \@ifstar\dddv@line\dddv@frac
+}
+
+\newcommand*{\@fromto@}[2]{%
+  \{ #1, \dots{}, #2 \}%
+}
+
+\newcommand*{\@fromto@str}[2]{%
+  \left\{ #1, \dots{}, #2 \right\}
+}
+
+\newcommand*{\fromto}{%
+  \@ifstar\@fromto@\@fromto@str
+}
+
+
+% Команда для набора множества:
+% версия со звёздочкой принимает один обязательный аргумент,
+% версия без звёздочки — два обязательных аргумента:
+% \set*{a} на печати даёт { a },
+% \set*{a}{b} на печати даёт { a | b }.
+% У обеих команд есть необязательный аргумент (который пишется первым и в квадратных скобках — размер скобок, если нужно выбрать их вручную.
+\let\set=\undefined
+\newcommand*{\set}{%
+  \@ifstar\set@star\set@
+}
+
+\newcommand*{\set@star}[2][]{%
+  \ifthenelse{\equal{#1}{}}{%
+    \left\{
+    #2
+    \right\}
+  }{%
+    \csname #1l\endcsname\{
+    #2
+    \csname #1r\endcsname\}
+  }
+}
+
+\newcommand*{\set@}[3][]{%
+  \ifthenelse{\equal{#1}{}}{%
+    \left\{
+    #2
+    \:\middle|\:
+    #3
+    \right\}
+  }{%
+    \csname #1l\endcsname\{
+    #2
+    \csname #1m\endcsname|
+    #3
+    \csname #1r\endcsname\}
+  }%
+}
+
+% Команда для построения оператора, состоящего из скобок, с автоматическим выбором размера скобок. Аргументы:
+% #1 (необязательный) — размер скобок: big, Big, bigg, Bigg;
+% #2 — левая скобка;
+% #3 — правая скобка;
+% #4 — то, что внутри скобок.
+\newcommand*{\bracketoperator}[4][]{
+  \ifthenelse{\equal{#1}{}}{%
+    \left #2
+    #4
+    \right #3
+  }{%
+    \csname #1l\endcsname #2
+    #4
+    \csname #1r\endcsname #3
+  }%
+}
+
+% Модуль: $\abs{x}$
+\let\abs=\undefined
+\newcommand*{\abs}[2][]{%
+  \bracketoperator[#1]{|}{|}{#2}%
+}
+
+% Норма: $\norm{x}$
+\let\norm=\undefined
+\newcommand*{\norm}[2][]{%
+  \bracketoperator[#1]{\|}{\|}{#2}%
+}
+
+% Скалярное произведение: $\spr{x}{y}$
+\newcommand*{\spr}[3][]{%
+  \bracketoperator[#1]{\langle}{\rangle}{#2,\,#3}%
+}
+\renewcommand*{\spr}[3][]{%
+  \bracketoperator[#1]{(}{)}{#2,\,#3}%
+}
+
+% Векторное произведение: $\vpr{x}{y}$
+\newcommand*{\vpr}[3][]{%
+  \bracketoperator[#1]{[}{]}{#2,\,#3}%
+}
+
+\makeatother
+
+% Окружение для создания окружений типа определений, теорем и прочего.
+% У него есть три аргумента (первый — необязательный):
+% #1 — собственное название (например, имя теоремы) (пишется, при наличии, в скобочках);
+% #2 — нарицательное название (например, «Определение»);
+% #3 — цвет (обычно  black).
+\newenvironment{meta}[3][]{%
+  % Делаем каждый абзац со втяжкой
+  %\everypar{%
+  %    \hangindent=1\parindent% Втяжка первой строки
+  %    \hangafter=1 %           Втягиваем только одну первую строку
+  %}%
+  \par%
+  \addvspace{\bigskipamount}%
+  \noindent%                   Подавляем абзацный отступ
+  {\bfseries
+  \color{#3}%
+    #2%
+    \ifthenelse{%
+      \equal{#1}{}%
+    }{}{%
+      ~(#1)%
+    }%
+    .~%
+    \nopagebreak%
+  }%\ignorepaces%
+}{%
+  \par
+  %\everypar{}%                Теперь абзацы без втяжки
+  \addvspace{\bigskipamount}%
+}
+
+\makeatletter
+
+\newcommand*{\newmeta}[3]{%
+    \newcounter{#1}%
+    \expandafter\def\csname the#1\endcsname{\thesection.\arabic{#1}}
+    \@addtoreset{#1}{section}%
+    \newenvironment{#1}[1][]{%
+      \refstepcounter{#1}%
+      \begin{meta}[##1]{#2~\csname the#1\endcsname}{#3}%
+    }{%
+      \end{meta}%
+    }%
+}
+
+\makeatother
+
+\newcommand*{\renewmeta}[3]{%
+    \expandafter\let\csname #1\endcsname=\undefined
+		\newmeta{#1}{#2}{#3}%
+}
+
+\newmeta{attention}{Внимание}{black}
+% \newmeta{example}{Пример}{black}
+% text definition — определение в тексте
+\newcommand*{\tdef}[1]{%
+    %{%
+        %\itshape
+        %\color{myColorTwo}%
+        \textbf{#1}%
+        %#1%
+    %}%
+}
+
+\newcommand*{\continueeq}{\mathrel{\:\boxed{\ensuremath{=}}\:}}
+
+\let\eqbox=\continueeq
+
+\newcommand*{\const}{\mathrm{const}}
+
+
+\makeatother
+
+\makeatletter
+
+\newcommand*{\add}{\@ifstar\add@star\add@}
+
+\newcommand{\add@}[1]{%
+  {%
+    \color{gray}%
+    #1%
+  }%
+}
+
+\newcommand*{\add@star}[1]{\relax}
+
+\makeatother
+
+
+\newenvironment{system}{%
+  \left\{
+  \begin{aligned}
+}{%
+  \end{aligned}
+  \right.
+}
+
+\newenvironment{systemr}{%
+  \left.
+  \begin{aligned}
+}{%
+  \end{aligned}
+  \right\}
+}
+
+% Модуль: $\abs{x}$
+\let\abs=\undefined
+\newcommand*{\abs}[2][]{%
+  \bracketoperator[#1]{|}{|}{#2}%
+}
+
+% Норма: $\norm{x}$
+\let\norm=\undefined
+\newcommand*{\norm}[2][]{%
+  \bracketoperator[#1]{\|}{\|}{#2}%
+}
+
+
+
+% \newcommand*{\NN}{\mathbb{N}}
+% \newcommand*{\ZZ}{\mathbb{Z}}
+% \newcommand*{\RR}{\mathbb{R}}
+% \newcommand*{\QQ}{\mathbb{Q}}
+% \newcommand*{\CC}{\mathbb{C}}
+% \newcommand*{\HH}{\mathbb{H}}
+
+\newcommand{\smalltextbox}[2][2in]{%
+    \hbox to 0pt {%
+        \hss
+        \parbox{#1}{%
+            \centering
+            \footnotesize
+            \selectfont
+            #2%
+        }%
+        \hss
+    }%
+}
+
+\newcommand*{\cl}[1]{\overline{#1}}
+\newcommand*{\opcl}{\operatorname{cl}}
+
+\newlength{\beforearrowheight}
+\newlength{\afterarrowheight}
+\setlength{\beforearrowheight}{0.5ex}
+\setlength{\afterarrowheight}{0.5ex}
+
+\newcommand*{\commentarrow}[3][2in]{%
+    \underset{%
+			\substack{%
+				{} \\
+				\hbox{$\scriptsize\uparrow$}%
+				\vspace{\afterarrowheight}%
+				\\
+				\smalltextbox[#1]{#3}%
+			}%
+	  }{%
+			#2%
+    }%
+}
+
+
+\newlength{\figurewidth}
+\setlength{\figurewidth}{0.9\linewidth}
+\newlength{\wrapfigurewidth}
+\setlength{\wrapfigurewidth}{0.4\linewidth}
+
+\newcommand*{\insertfigure}[4][h]{%
+    \begin{figure}[#1]
+        {\centering
+            \makebox[0pt][c]{%
+                \input{#2}%  
+            }%
+            \par
+        }%
+        \caption{#3}
+        \label{#4}
+    \end{figure}%
+}
+
+\newcommand*{\insertwrapfigure}[4]{%
+    \begin{wrapfigure}{#1}{\wrapfigurewidth}
+        \begin{minipage}[c]{\wrapfigurewidth}%
+            \centering
+            \makebox[0pt]{%
+                \input{#2}%  
+            }\par
+        \end{minipage}%
+        \caption{#3}
+        \label{#4}
+    \end{wrapfigure}%
+}
+
+\newcommand*{\insertfigureP}[4][h]{%
+    \begin{figure}[#1]
+        \includegraphics[\figurewidth]{#2}%  
+        \caption{#3}%
+        \label{#4}%
+    \end{figure}%
+}
+
+\newcommand*{\insertwrapfigureP}[4]{%
+    \begin{wrapfigure}{#1}{\wrapfigurewidth}
+        \includegraphics[\figurewidth]{#2}%  
+        \caption{#3}%
+        \label{#4}%
+    \end{wrapfigure}%
+}
+
+\renewcommand*{\implies}{\;\mathrel{\Rightarrow}\;}
+\renewcommand*{\picref}[1]{рис.\,\ref{#1}}
+\AtBeginDocument{%
+  \allowdisplaybreaks
+}
+\newcommand*{\dist}{\mathop{\mathrm{dist}}}
+\newcommand*{\I}{\ensuremath{\mathrm{I}}}
+\newcommand*{\II}{\ensuremath{\mathrm{II}}}
+\newcommand*{\III}{\ensuremath{\mathrm{III}}}
+
+\newcommand*{\nlinea}[1]{%
+    #1 {} \\ {} &#1
+}
+\newcommand*{\nline}[1]{%
+    #1 {} \\ {} #1
+}
